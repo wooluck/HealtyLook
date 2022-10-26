@@ -10,17 +10,14 @@ import UIKit
 
 class MainTableCell: UITableViewCell {
     lazy var titleLabel = UILabel().then {
-        $0.text = "제목"
         $0.font = .systemFont(ofSize: 16, weight: .bold)
     }
     
     lazy var subTitleLabel = UILabel().then {
-        $0.text = "서브제목"
         $0.font = .systemFont(ofSize: 14, weight: .bold)
     }
     
     lazy var dateLabel = UILabel().then {
-        $0.text = "날짜"
         $0.font = .systemFont(ofSize: 14, weight: .bold)
     }
     

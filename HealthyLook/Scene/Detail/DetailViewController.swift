@@ -10,9 +10,18 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+// MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
+    }
+}
+
+// MARK: - extension_function
+extension MainViewController {
+    private func setup() {
         view.backgroundColor = .white
         
     }
