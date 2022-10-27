@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import Then
 import SnapKit
+import Alamofire
 
 struct Info {
     var title: String
@@ -30,16 +31,18 @@ class MainViewController: UIViewController {
         $0.register(MainTableCell.self, forCellReuseIdentifier: "MainTableCell")
         $0.rowHeight = UITableView.automaticDimension
         $0.layer.cornerRadius = 10
-        $0.backgroundColor = .purple
-        $0.estimatedRowHeight = 50
+//        $0.backgroundColor = .purple
+//        $0.estimatedRowHeight = 50
     }
     
 // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
         navigationSetup()
+        setup()
         bindTableView()
+        getTest()
+        
     }
 }
 
@@ -58,16 +61,20 @@ extension MainViewController {
     }
     
     private func navigationSetup() {
-        let cancel = UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: { _ in
-            // 들어갈 액션
-        }))
-        
-        self.navigationItem.title = "운동일지"
-        let rightBtn = UIBarButtonItem(image: .init(systemName: "plus"), style: .plain, target: self, action: #selector(goAddVC))
-        self.navigationItem.rightBarButtonItem = rightBtn
+//        let cancel = UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: { _ in
+//            // 들어갈 액션
+//        }))
         
         let searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
+        
+        
+        self.navigationItem.title = "일지"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        let rightBtn = UIBarButtonItem(image: .init(systemName: "plus"), style: .plain, target: self, action: #selector(goAddVC))
+        self.navigationItem.rightBarButtonItem = rightBtn
+        
+        
     }
     
     @objc private func goAddVC() {
@@ -85,5 +92,17 @@ extension MainViewController {
         }.disposed(by: disposeBag)
     }
     
-    
+    func getTest() {
+        let url = "https://jsonplaceholder.typicode.com/todos/1"
+        AF.request(url,
+                   method: .get,
+                   parameters: nil,
+                   encoding: URLEncoding.default,
+                   headers: ["Content-Type":"application/json", "Accept":"application/json"])
+            .validate(statusCode: 200..<300)
+            .responseJSON { (json) in
+                //응답처리
+                print(json)
+        }
+    }
 }

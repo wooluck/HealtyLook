@@ -12,4 +12,5 @@ target 'HealthyLook' do
     pod 'Then'
     pod 'RxDataSources', '~> 5.0'
     pod 'FSCalendar'
+    pod 'Alamofire'
 end

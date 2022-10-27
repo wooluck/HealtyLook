@@ -26,7 +26,7 @@ class MainTableCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         setupLayout()
-        backgroundColor = .red
+//        backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
